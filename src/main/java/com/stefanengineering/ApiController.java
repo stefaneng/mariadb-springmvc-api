@@ -1,13 +1,18 @@
 package com.stefanengineering;
 
-import java.util.Collection;
-import java.util.LinkedList;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ApiController {
+
+    private final UserRepository userRepository;
+
+    @Autowired
+    public ApiController(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     @RequestMapping("/")
     public String rootPage() {
@@ -15,7 +20,7 @@ public class ApiController {
     }
 
     @RequestMapping("/api/users")
-    public Collection<User> listUsers() {
-        return new LinkedList<>();
+    public Iterable<User> listUsers() {
+        return userRepository.findAll();
     }
 }
