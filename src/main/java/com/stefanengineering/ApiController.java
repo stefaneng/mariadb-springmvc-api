@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@RequestMapping("/api")
 @RestController
 public class ApiController {
 
@@ -14,12 +15,7 @@ public class ApiController {
         this.userRepository = userRepository;
     }
 
-    @RequestMapping("/")
-    public String rootPage() {
-        return "Example";
-    }
-
-    @RequestMapping("/api/users")
+    @RequestMapping("/users")
     public Iterable<User> listUsers() {
         return userRepository.findAll();
     }
