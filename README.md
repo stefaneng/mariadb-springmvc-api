@@ -6,6 +6,12 @@
 How to do this automatically? Using JPA?
 
 ### Creating Database
+From the command line
+```
+mysql -uroot < init.sql
+```
+
+Creating tables and schema
 ```
 CREATE DATABASE springJpaExample;
 CREATE TABLE user (id iNt PRIMARY KEY AUTO_INCREMENT, first_name text NOT NULL, last_name text NOT NULL);
