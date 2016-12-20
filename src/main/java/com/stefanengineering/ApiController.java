@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/api")
 @RestController
 public class ApiController {
     private static final Logger logger = LoggerFactory.getLogger(ApiController.class);
@@ -20,8 +19,8 @@ public class ApiController {
         this.userRepository = userRepository;
     }
 
-    @RequestMapping("/user")
-    public Iterable<User> getUserByName(@RequestParam(value = "firstname", required = false) String firstName,
+    @RequestMapping("/api/user")
+    public Iterable<User> getUsers(@RequestParam(value = "firstname", required = false) String firstName,
             @RequestParam(value = "lastname", required = false) String lastName) {
         logger.info("query for: firstname = {} lastname = {}", firstName, lastName);
         if (firstName != null && lastName != null)
@@ -34,8 +33,8 @@ public class ApiController {
             return userRepository.findAll();
     }
 
-    @RequestMapping("/user/{id}")
-    public User getUser(@PathVariable long id) {
+    @RequestMapping("/api/user/{id}")
+    public User getUserById(@PathVariable long id) {
         return userRepository.findOne(id);
     }
 }
