@@ -25,7 +25,7 @@ public class ApiControllerTests {
     @Test
     public void usersShouldBeOkAndJson() throws Exception {
 
-        this.mockMvc.perform(get("/api/users")).andDo(print()).andExpect(status().isOk())
+        this.mockMvc.perform(get("/api/user")).andDo(print()).andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8));
 
     }

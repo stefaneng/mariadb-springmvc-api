@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class Application {
-    private static final Logger log = LoggerFactory.getLogger(Application.class);
+    private static final Logger logger = LoggerFactory.getLogger(Application.class);
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -22,12 +22,12 @@ public class Application {
             repository.save(new User("John", "Smith"));
             repository.save(new User("Alex", "Johnson"));
 
-            log.info("Customers found with findAll():");
-            log.info("-------------------------------");
+            logger.info("Customers found with findAll():");
+            logger.info("-------------------------------");
             for (User customer : repository.findAll()) {
-                log.info(customer.toString());
+                logger.info(customer.toString());
             }
-            log.info("");
+            logger.info("");
         };
     }
 }
