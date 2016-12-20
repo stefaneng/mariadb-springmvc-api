@@ -18,16 +18,16 @@ public class Application {
     @Bean
     public CommandLineRunner initRepository(UserRepository repository) {
         return (args) -> {
-            repository.save(new User("Stefan", "Eng"));
-            repository.save(new User("John", "Smith"));
-            repository.save(new User("Alex", "Johnson"));
-
-            logger.info("Customers found with findAll():");
-            logger.info("-------------------------------");
-            for (User customer : repository.findAll()) {
-                logger.info(customer.toString());
-            }
-            logger.info("");
+            /*
+             * repository.save(new User("Stefan", "Eng")); repository.save(new
+             * User("John", "Smith")); repository.save(new User("Alex",
+             * "Johnson"));
+             * 
+             * logger.info("Customers found with findAll():");
+             * logger.info("-------------------------------"); for (User
+             * customer : repository.findAll()) {
+             * logger.info(customer.toString()); } logger.info("");
+             */
         };
     }
 }
