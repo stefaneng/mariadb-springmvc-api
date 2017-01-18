@@ -20,35 +20,33 @@ First let's set the spring version we are going to use in [pom.xml](./pom.xml)
 ```{xml}
   <properties>
     ...
-    <spring.version>1.4.3.RELEASE</spring.version>
+    <springboot.version>1.4.3.RELEASE</springboot.version>
   </properties>
 ```
-Then we want to add the dependency for spring boot by adding
+Then we want to add the dependency for spring-boot and spring-boot-autoconfigure to simplify configuration by adding
 ```{xml}
 <dependencies>
   ...
   <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot</artifactId>
-    <version>${spring.version}</version>
+    <version>${springboot.version}</version>
+  </dependency>
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-autoconfigure</artifactId>
+    <version>${springboot.version}</version>
   </dependency>
 </dependencies>
 ```
-To make our lives easier, we will also add the maven spring boot plugin to add the maven goal `spring-boot:run`. This will run our application.
+We will also add the maven spring boot plugin to add the maven goal `spring-boot:run`. This will run our application.
 ```{xml}
 <build>
   <plugins>
     <plugin>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-maven-plugin</artifactId>
-      <version>${spring.version}</version>
-      <executions>
-        <execution>
-          <goals>
-            <goal>repackage</goal>
-          </goals>
-        </execution>
-      </executions>
+      <version>${springboot.version}</version>
     </plugin>
   </plugins>
 </build>
@@ -58,18 +56,17 @@ Next we need to make our application use spring-boot. Update [App.js](./src/main
 package com.stefanengineering.examples.spring_mariadb;
 
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootConfiguration
-public class App 
-{
-    public static void main( String[] args )
-    {
+@SpringBootApplication
+public class App {
+    public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }
 }
-
 ```
+Just as a note from the [Spring Documentation](http://docs.spring.io/spring-boot/docs/current/reference/html/using-boot-using-springbootapplication-annotation.html)
+> The `@SpringBootApplication` annotation is equivalent to using `@Configuration`, `@EnableAutoConfiguration` and `@ComponentScan` with their default attributes
 
 Now we can run our application with `mvn spring-boot:run`
 ```
